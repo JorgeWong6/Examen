@@ -111,7 +111,7 @@ Puede usar los args de desestructuración habituales. Expandir variables de lista
 ;; podemos probar esto inmediatamente,sin crear un macro.
 (inline-2-helper '(a + (b - 2) - (c * 5))) ; -> (- (+ a (- b 2)) (* c 5))
 
-; However, we'll need to make it a macro if we want it to be run at compile time
+; Sin embargo, tendremos que hacer una macro si queremos que se ejecute en tiempo de compilación.
 (defmacro inline-2 [form]
   (inline-2-helper form)))
 
@@ -119,5 +119,5 @@ Puede usar los args de desestructuración habituales. Expandir variables de lista
 ; -> (+ (- (+ 1 (/ 3 2)) (/ 1 2)) 1)
 
 (inline-2 (1 + (3 / 2) - (1 / 2) + 1))
-; -> 3 (actually, 3N, since the number got cast to a rational fraction with /)
+; -> 3 (En realidad, 3N, ya que el número se convirtió en una fracción racional con/)
 
