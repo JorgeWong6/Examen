@@ -3,18 +3,20 @@
 
 ;;Este macro es algo similar como si escribieras(reversa "Hola Mundo".) (DefMacro mi-primer-macro[]
   
-;; Inspect the result of a macro using macroexpand or macroexpand-1.
-;;
-;; Note that the call must be quoted.
-(macroexpand '(my-first-macro))
-;; -> (#<core$reverse clojure.core$reverse@xxxxxxxx> "Hello World")
+;;Inspeccionar el resultado de un macro usando MacroExpand o MacroExpand- 
 
-;; You can eval the result of macroexpand directly:
-(eval (macroexpand '(my-first-macro)))
+1. 
+
+;; Tenga en cuenta que la llamada debe ser citada.
+(macroexpand '(mi-primer-macro))
+;; -> (#<core$reverse clojure.core$reverse@xxxxxxxx> "Hola Mundo")
+
+;; Puede evaluar el resultado de macroexpand directamente:
+(evaluar (macroexpand '(mi-primer-macro)))
 ; -> (\d \l \o \r \W \space \o \l \l \e \H)
 
-;; But you should use this more succinct, function-like syntax:
-(my-first-macro)  ; -> (\d \l \o \r \W \space \o \l \l \e \H)
+;; Pero usted debe utilizar este más sucinto,Funcion-como sintaxys:
+(mi-primer-macro)  ; -> (\d \l \o \r \W \space \o \l \l \e \H)
 
 ;; You can make things easier on yourself by using the more succinct quote syntax
 ;; to create lists in your macros:
