@@ -18,43 +18,45 @@
 ;; Pero usted debe utilizar este más sucinto,Funcion-como sintaxys:
 (mi-primer-macro)  ; -> (\d \l \o \r \W \space \o \l \l \e \H)
 
-;; You can make things easier on yourself by using the more succinct quote syntax
-;; to create lists in your macros:
-(defmacro my-first-quoted-macro []
-  '(reverse "Hello World"))
+;; Puedes hacer las cosas más fáciles sobre ti usando la sintaxis más sucinta de la sintaxis 
+;; Para crear listas en tu macro:
+(defmacro mi-primer-citado-macro []
+  '(reversa "Hola Mundo"))
 
-(macroexpand '(my-first-quoted-macro))
-;; -> (reverse "Hello World")
-;; Notice that reverse is no longer function object, but a symbol.
+(macroexpand '(mi-primer-citado-macro))
+;; -> (reversa "Hola Mundo")
+;; Observe que el reverso ya no es un objeto de función, sino un símbolo.
 
-;; Macros can take arguments.
+;; Macros pueden tomar argumentos.
 (defmacro inc2 [arg]
   (list + 2 arg))
 
 (inc2 2) ; -> 4
 
-;; But, if you try to do this with a quoted list, you'll get an error, because
-;; the argument will be quoted too. To get around this, clojure provides a
-;; way of quoting macros: `. Inside `, you can use ~ to get at the outer scope
+;; 
+Pero, si intenta hacer esto con una lista citada, obtendrá un error, porque;
+;El argumento será citado también. Para evitar esto, clojure proporciona una;
+;; madera de citar macros: `. dentro `, tu puedes usar ~ Para llegar al ámbito exterior.
 (defmacro inc2-quoted [arg]
   `(+ 2 ~arg))
 
 (inc2-quoted 2)
 
-;; You can use the usual destructuring args. Expand list variables using ~@
+;; 
+Puede usar los args de desestructuración habituales. Expandir variables de lista utilizando ~@
 (defmacro unless [arg & body]
   `(if (not ~arg)
-     (do ~@body))) ; Remember the do!
+     (do ~@body))) ; Recuerda hacerlo!
 
-(macroexpand '(unless true (reverse "Hello World")))
+(macroexpand '(A menos que sea verdad(reversa "Hola Mundo")))
 ;; ->
-;; (if (clojure.core/not true) (do (reverse "Hello World")))
+;; (if (clojure.core/no verdadero) (hacer (reversa "Hola Mundo")))
 
-;; (unless) evaluates and returns its body if the first argument is false.
-;; Otherwise, it returns nil
+;; (a menos) evaluar y regresar este cuerpo si el primer argumento es falso.
+;; Otra Manera, Devolver cero
 
-(unless true "Hello") ; -> nil
-(unless false "Hello") ; -> "Hello"
+(A menos que sea verdadero "Hola") ; -> "nulo"
+(A menos que sea Falso "Hola") ; -> "Hola"
 
 ;; Used without care, macros can do great evil by clobbering your vars
 (defmacro define-x []
