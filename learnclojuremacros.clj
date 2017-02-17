@@ -42,14 +42,14 @@ Pero, si intenta hacer esto con una lista citada, obtendrá un error, porque;
 
 (inc2-quoted 2)
 
-;; 
-Puede usar los args de desestructuración habituales. Expandir variables de lista utilizando ~@
+;; Puede usar los args de desestructuración habituales. Expandir variables de lista utilizando ~@
 (defmacro unless [arg & body]
   `(if (not ~arg)
      (do ~@body))) ; Recuerda hacerlo!
 
 (macroexpand '(A menos que sea verdad(reversa "Hola Mundo")))
 ;; ->
+
 ;; (if (clojure.core/no verdadero) (hacer (reversa "Hola Mundo")))
 
 ;; (a menos) evaluar y regresar este cuerpo si el primer argumento es falso.
@@ -121,3 +121,4 @@ Puede usar los args de desestructuración habituales. Expandir variables de lista
 (inline-2 (1 + (3 / 2) - (1 / 2) + 1))
 ; -> 3 (En realidad, 3N, ya que el número se convirtió en una fracción racional con/)
 
+/////////////// Traducido por: Jorge Wong Loaiza //////////
