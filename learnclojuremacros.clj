@@ -58,7 +58,7 @@ Puede usar los args de desestructuración habituales. Expandir variables de lista
 (A menos que sea verdadero "Hola") ; -> "nulo"
 (A menos que sea Falso "Hola") ; -> "Hola"
 
-;; Used without care, macros can do great evil by clobbering your vars
+;; al no tener cuidado, las macros pueden hacer un gran mal al clobbering sus variables
 (defmacro define-x []
   '(do
      (def x 2)
@@ -68,10 +68,10 @@ Puede usar los args de desestructuración habituales. Expandir variables de lista
 (define-x) ; -> (2)
 (list x) ; -> (2)
 
-;; To avoid this, use gensym to get a unique identifier
-(gensym 'x) ; -> x1281 (or some such thing)
+;;Para vaciar esto, usa GenSym para tener una identidad unica 
+(gensym 'x) ; -> x1281 (o algo asi)
 
-(defmacro define-x-safely []
+(defmacro define-x-SinPeligro []
   (let [sym (gensym 'x)]
     `(do
        (def ~sym 2)
@@ -81,8 +81,7 @@ Puede usar los args de desestructuración habituales. Expandir variables de lista
 (define-x-safely) ; -> (2)
 (list x) ; -> (4)
 
-;; You can use # within ` to produce a gensym for each symbol automatically
-(defmacro define-x-hygenically []
+;; tu puedes usar # Dentro ` para producir un gensym Un gensym para cada símbolo automáticamente (defmacro define-x-higienicamente []
   `(do
      (def x# 2)
      (list x#)))
@@ -91,9 +90,9 @@ Puede usar los args de desestructuración habituales. Expandir variables de lista
 (define-x-hygenically) ; -> (2)
 (list x) ; -> (4)
 
-;; It's typical to use helper functions with macros. Let's create a few to
-;; help us support a (dumb) inline arithmetic syntax
-(declare inline-2-helper)
+;; Es típico usar funciones de ayuda con macros. Vamos a crear unos cuantos
+;; Nos ayudan a apoyar una sintaxis aritmética en línea (muda)
+(declara EnUnaLinea-2-Ayudante)
 (defn clean-arg [arg]
   (if (seq? arg)
     (inline-2-helper arg)
@@ -109,7 +108,7 @@ Puede usar los args de desestructuración habituales. Expandir variables de lista
   (let [ops (partition 2 ops-and-args)]
     (reduce apply-arg (clean-arg arg1) ops)))
 
-;; We can test it immediately, without creating a macro
+;; podemos probar esto inmediatamente,sin crear un macro.
 (inline-2-helper '(a + (b - 2) - (c * 5))) ; -> (- (+ a (- b 2)) (* c 5))
 
 ; However, we'll need to make it a macro if we want it to be run at compile time
